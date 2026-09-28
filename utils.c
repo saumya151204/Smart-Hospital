@@ -171,3 +171,26 @@ void getPassword(const char *msg, char *out, int size)
     out[i] = '\0';
     printf("\n");
 }
+
+/* ---------- String helpers ---------- */
+int compareIgnoreCase(const char *a, const char *b)
+{
+    while (*a && *b) {
+        int ca = tolower((unsigned char)*a), cb = tolower((unsigned char)*b);
+        if (ca != cb) return ca - cb;
+        a++; b++;
+    }
+    return tolower((unsigned char)*a) - tolower((unsigned char)*b);
+}
+
+int containsIgnoreCase(const char *text, const char *pattern)
+{
+    size_t n = strlen(pattern), i;
+    if (n == 0) return 1;
+    for (; *text; text++) {
+        for (i = 0; i < n && text[i] &&
+             tolower((unsigned char)text[i]) == tolower((unsigned char)pattern[i]); i++) ;
+        if (i == n) return 1;
+    }
+    return 0;
+}

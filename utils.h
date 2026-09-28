@@ -25,6 +25,10 @@ void getPhone(const char *msg, char *out);
 char getGender(const char *msg);
 int  confirm(const char *msg);      /* 1 = yes, 0 = no */
 
+/* String helpers */
+int compareIgnoreCase(const char *a, const char *b);
+int containsIgnoreCase(const char *text, const char *pattern);
+
 /* Date / time */
 Date todayDate(void);
 void printDate(Date d);

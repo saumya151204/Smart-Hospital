@@ -1,5 +1,5 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -g
+CFLAGS  = -Wall -Wextra -g -MMD -MP
 SRC     = $(wildcard *.c)
 OBJ     = $(SRC:.c=.o)
 
@@ -19,7 +19,9 @@ $(TARGET): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+-include $(OBJ:.o=.d)
+
 clean:
-	-$(RM) *.o $(TARGET)
+	-$(RM) *.o *.d $(TARGET)
 
 .PHONY: all clean
